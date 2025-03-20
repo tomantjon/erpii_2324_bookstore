@@ -1,6 +1,7 @@
 <mvc:View controllerName="my.booksapp.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+    <Shell id="shell">
+        <App id="app"></App>
+    </Shell>
 </mvc:View>
