@@ -1,0 +1,18 @@
+<mvc:View controllerName="my.booksapp.controller.BookDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page title="{i18n>bookDetailTitle}">
+        <VBox >
+            <Input id="inBookID"
+                value="{ID}"
+                visible="false" />
+            <Label text="Title: {title}"></Label>
+            <Label text="Author: {author/name}"></Label>
+            <Label text="Books in Stock: {stock}"></Label>
+
+            <Button type="Default"
+                text="Order now!"
+                press="handleOrderPressed"></Button>
+        </VBox>
+    </Page>
+</mvc:View>

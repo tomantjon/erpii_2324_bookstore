@@ -94,12 +94,21 @@
           "name": "MainRoute",
           "pattern": "",
           "target": ["Main"]
+        },
+        {
+          "name": "BookDetailRoute",
+          "pattern": "book?id={bookID}",
+          "target": ["BookDetail"]
         }
       ],
       "targets": {
         "Main": {
           "id": "Main",
           "name": "Main"
+        },
+        "BookDetail": {
+          "id": "BookDetail",
+          "name": "BookDetail"
         }
       }
     },

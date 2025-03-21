@@ -3,5 +3,30 @@
     xmlns="sap.m">
     <Page id="page"
         title="{i18n>title}">
+        <VBox width="100%"
+            direction="Column"
+            id="vbox0">
+            <Table id="tblBooks"
+                headerText="Books"
+                items="{/Books}">
+                <columns>
+                    <Column id="column1">
+                        <header>
+                            <Text id="header1"
+                                text="Title"/>
+                        </header>
+                    </Column>
+
+                </columns>
+                <ColumnListItem id="columnlistitem"
+                    vAlign="Middle"
+                    type="Navigation"
+                    press="handleItemPressed">
+                    <Text id="title"
+                        text="{title}"/>
+
+                </ColumnListItem>
+            </Table>
+        </VBox>
     </Page>
 </mvc:View>
