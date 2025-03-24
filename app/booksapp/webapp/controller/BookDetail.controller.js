@@ -1,6 +1,6 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast"],
-  (Controller, MessageToast) => {
+  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/m/MessageBox"],
+  (Controller, MessageToast, MessageBox) => {
     "use strict";
 
     return Controller.extend("my.booksapp.controller.BookDetail", {
@@ -13,16 +13,19 @@ sap.ui.define(
 
       handleOrderPressed: function (oEvent) {
         console.log("Ordering the book");
+
         let ibookId = this.getView().byId("inBookID").getValue();
 
-        this.getView()
-          .byId("Submit")
-          .getObjectBinding()
+        let oModel = this.getView().getModel(),
+          oOperation = oModel.bindContext("/submitOrder(...)");
+
+        oOperation
           .setParameter("book", ibookId)
           .setParameter("quantity", 5)
           .invoke()
           .then(
             function () {
+              oModel.refresh();
               MessageToast.show("Book ordered");
             },
             function (oError) {
@@ -32,7 +35,6 @@ sap.ui.define(
               });
             }
           );
-        this.getView().getModel().refresh();
       },
 
       _onRouteMatched: function (oEvent) {
