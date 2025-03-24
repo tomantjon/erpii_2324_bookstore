@@ -15,31 +15,24 @@ sap.ui.define(
         console.log("Ordering the book");
         let ibookId = this.getView().byId("inBookID").getValue();
 
-        let oOrdersBinding = this.getView().getModel().bindList("/Orders");
-
-        var oContext = oOrdersBinding.create({
-          book_ID: ibookId,
-          amount: 5,
-        });
-        //Hard refresh
-        window.location.reload();
-        // Note: This promise fails only if the transient entity is canceled,
-        //   i.e. deleted by either deleting the transient context or by resetting pending changes
-        oContext.created().then(
-          function () {
-            //Order Successfully created but the page cannot be refreshed -> API call to create an Order must be converted to an Action
-
-            MessageToast.show("Order was posted");
-            window.location.reload();
-          },
-          function (oError) {
-            //Flight failed
-            // handle rejection of entity creation; if oError.canceled === true then the transient entity has been deleted
-            if (!oError.canceled) {
-              throw oError; // unexpected error
+        this.getView()
+          .byId("Submit")
+          .getObjectBinding()
+          .setParameter("book", ibookId)
+          .setParameter("quantity", 5)
+          .invoke()
+          .then(
+            function () {
+              MessageToast.show("Book ordered");
+            },
+            function (oError) {
+              MessageBox.alert(oError.message, {
+                icon: MessageBox.Icon.ERROR,
+                title: "Error",
+              });
             }
-          }
-        );
+          );
+        this.getView().getModel().refresh();
       },
 
       _onRouteMatched: function (oEvent) {

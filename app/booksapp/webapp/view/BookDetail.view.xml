@@ -1,6 +1,7 @@
 <mvc:View controllerName="my.booksapp.controller.BookDetail"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
     <Page title="{i18n>bookDetailTitle}">
         <VBox >
             <Input id="inBookID"
@@ -9,10 +10,14 @@
             <Label text="Title: {title}"></Label>
             <Label text="Author: {author/name}"></Label>
             <Label text="Books in Stock: {stock}"></Label>
-
+        </VBox>
+        <form:SimpleForm id="Submit"
+            binding="{/submitOrder(...)}">
             <Button type="Default"
                 text="Order now!"
                 press="handleOrderPressed"></Button>
-        </VBox>
+        </form:SimpleForm>
+
+
     </Page>
 </mvc:View>
